@@ -1,0 +1,23 @@
+This dir contains src code and test data for clustering with noise cluster. Please note that this is a slow implementation of clustering model.
+
+Model for clustering:
+	1) Cost function for one species:
+		C = - (sum_over_i(in_cluster_density(i) / ( in_cluster_density(i) + out_cluster_density(i))) * n + lamda * noise_term)
+		where
+		N: #total genes in network
+		n: size(i)
+		i: cluster i
+		in_cluster_density(i): in_cluster_edges / (n * (n-1) / 2)
+		out_cluster_density(i): out_cluster_edges / ((N-n) * n)
+		noise_term: #genes in noise cluster
+		lamda: sum_over_i(in_cluster_density(i) / ( in_cluster_density(i) + out_cluster_density(i))) / N
+	2) There will be k+1 clusters in the output clustering, where cluster0 is noise cluster and k is the number of clusters specified in arguments
+	3) ortholog term: a ortholog term is finally added to the cost function. This term is #ortholog edges where both end nodes of it are in the same cluster. A noise term for ortholog term is also added. Noise term = alpha * #genes in noise cluster, where alpha = sum(#ortholog edges) / N
+
+To compile:
+>> cd src
+>> g++ -O3 -o bin/clustering -Wno-deprecated -std=c++0x *.cpp
+
+To test code on test data:
+>> ./src/bin/clustering 10 1 1 test_data/orth.txt 3 test_data/network0.txt test_data/network1.txt test_data/network2.txt -t 1 2>log >out
+
