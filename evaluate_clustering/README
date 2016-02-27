@@ -1,0 +1,2 @@
+## To evaluate clustering results with noise cluster, use this script. Please note that additional files such as 'RealCluster' and 'RealNetwork' are needed. For networks lack of ground truth, 'RealCluster' can be an artifact.
+>> perl bin/evaluate_clustering_noiseClus.pl

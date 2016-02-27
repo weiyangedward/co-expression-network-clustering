@@ -19,5 +19,10 @@ To compile:
 >> g++ -O3 -o bin/clustering -Wno-deprecated -std=c++0x *.cpp
 
 To test code on test data:
+>> ./src/bin/clustering
 >> ./src/bin/clustering 10 1 1 test_data/orth.txt 3 test_data/network0.txt test_data/network1.txt test_data/network2.txt -t 1 2>log >out
 
+Tips:
+	1) To get results sooner, try smaller -t
+	2) To get clusters with higher in/out denstiy ratio, try smaller couplingConstant
+	3) To get smaller cost, try larger -t
