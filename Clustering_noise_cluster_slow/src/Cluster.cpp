@@ -36,8 +36,8 @@ Cluster::Cluster(SpeciesNetwork **specnws, int numS, Orthology *orthology, int n
     // count total number of edges and degree (do not need this )
     //    TotalNumEdges();
     
-    //    srand((int)time(NULL)); // random seed for local time
-    srand(1); // fix random seed
+    srand((int)time(NULL)); // random seed for local time
+    // srand(1); // fix random seed
     
     // 2D arr to store cluster label for each edge (i, j)
     snsClusterAssn = new int *[numSpecies];
