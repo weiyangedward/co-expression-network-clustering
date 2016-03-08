@@ -33,7 +33,7 @@ public:
     int * snsNumNodes; // number of nodes in each species network
     int * totalNumEdges;
     int ** degree;
-    vector< vector< unordered_set<int> > > spe_cluster_nodes; // 3D arr to store nodes per cluster per spe
+    vector< vector< unordered_map<int, int> > > spe_cluster_nodes; // 3D arr to store nodes per cluster per spe
     
     double CurrentCost;
     double CurrentCostClus;

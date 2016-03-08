@@ -24,10 +24,10 @@ Cluster::Cluster(SpeciesNetwork **specnws, int numS, Orthology *orthology, int n
     // init 3D arr to store nodes per cluster per species
     for (int spe = 0; spe<numSpecies; spe++)
     {
-        vector< unordered_set<int> > tmp_cluster_node;
+        vector< unordered_map<int, int> > tmp_cluster_node;
         for (int clus = 0; clus< numClusters; clus++)
         {
-            unordered_set<int> tmp_node;
+            unordered_map<int, int> tmp_node;
             tmp_cluster_node.push_back(tmp_node);
         }
         spe_cluster_nodes.push_back(tmp_cluster_node);
@@ -64,7 +64,7 @@ Cluster::Cluster(SpeciesNetwork **specnws, int numS, Orthology *orthology, int n
         for (int node=0; node<snsNumNodes[spe]; node++)
         {
             snsClusterAssn[spe][node] = rand() % numClusters; // [spe][node] = cluster
-            spe_cluster_nodes[spe][snsClusterAssn[spe][node]].emplace(node); // [spe][cluster].push_back(node)
+            spe_cluster_nodes[spe][snsClusterAssn[spe][node]][node] = 1; // [spe][cluster].push_back(node)
         }
     }
     
@@ -310,7 +310,7 @@ double Cluster::DeltaCostNew(int **ClusterAssn)
     double old_score = ScoreOfSpe(spe);
     
     spe_cluster_nodes[spe][old_cluster].erase(perturb_node);
-    spe_cluster_nodes[spe][new_cluster].emplace(perturb_node);
+    spe_cluster_nodes[spe][new_cluster][perturb_node] = 1;
     double new_score = ScoreOfSpe(spe);
     
     delta_score = new_score - old_score;
@@ -322,7 +322,7 @@ double Cluster::ScoreOfSpe(int spe)
 {
     double spe_score = 0.0;
     
-    unordered_set<int>::iterator node;
+    unordered_map<int, int>::iterator node;
     list<int>::iterator adj_gene;
     unsigned long noise_cluster_size = spe_cluster_nodes[spe][0].size();
     // ignore noise cluster here
@@ -333,7 +333,7 @@ double Cluster::ScoreOfSpe(int spe)
         unsigned long cluster_size = spe_cluster_nodes[spe][clus].size();
         for (node = spe_cluster_nodes[spe][clus].begin(); node!= spe_cluster_nodes[spe][clus].end(); node++)
         {
-            for (adj_gene = sns[spe]->adjacencyList[*node].begin(); adj_gene != sns[spe]->adjacencyList[*node].end(); adj_gene++)
+            for (adj_gene = sns[spe]->adjacencyList[(node->first)].begin(); adj_gene != sns[spe]->adjacencyList[node->first].end(); adj_gene++)
             {
                 // adj_gene in the same cluster as cur gene
                 if (spe_cluster_nodes[spe][clus].find(*adj_gene) !=spe_cluster_nodes[spe][clus].end())
@@ -555,7 +555,7 @@ void Cluster::UndoPerturb(int **ClusterAssn, int new_state)
     {
         ClusterAssn[UndoLog[i-1].spc][UndoLog[i-1].node] = UndoLog[i-1].oldstate;
         spe_cluster_nodes[UndoLog[i-1].spc][new_state].erase(UndoLog[i-1].node);
-        spe_cluster_nodes[UndoLog[i-1].spc][UndoLog[i-1].oldstate].emplace(UndoLog[i-1].node);
+        spe_cluster_nodes[UndoLog[i-1].spc][UndoLog[i-1].oldstate][UndoLog[i-1].node] = 1;
     }
     
     UndoLogSize = 0;
