@@ -14,9 +14,10 @@ struct LogEntry
 class Cluster
 {
     vector<double> spe_cost;
+    bool has_noise_cluster; // if clustering should include noise cluster
 public:
     // constructor
-    Cluster(SpeciesNetwork **specnws, int numS, Orthology *orthology, int numC, double cC);
+    Cluster(SpeciesNetwork **specnws, int numS, Orthology *orthology, int numC, double cC, bool has_noiseCluster);
     
     // clustering
     void LearnGroundState();
@@ -25,7 +26,7 @@ public:
     Orthology *orth;
     int numSpecies;
     int numClusters;
-    double couplingConstant;
+    double couplingConstant = 0.0;
     double maxtemp;
     
     int ** snsClusterAssn;	// assignment of each node in each species to a cluster

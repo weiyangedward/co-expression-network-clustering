@@ -1,8 +1,12 @@
 'Clustering_noise_cluster_slow': contains src code and test case for implementation and clustering model with noise cluster. 
 
-'InOutRatioModel_with_Noise_Cluster_fast': contains src code and test case for clustering. Note that this is a fast implementation of the same model in 'Clustering_noise_cluster_slow'. Codes are tested and consistent results are obtained between this two implementations.
+'InOutRatioModel_with_Noise_Cluster_fast': contains src code and test case for clustering. Note that this is a fast implementation of the same model in 'Clustering_noise_cluster_slow'. Codes are tested and consistent results are obtained between these two implementations.
 
 'evaluate_clustering': contains scripts to evaluate clustering results. 
 
-## mount to hal
-sshfs weiyang4@hal9000-sched.cs.illinois.edu:/home/weiyang4/software/CS-GRN ./tmp_hal  -ocache=no -onolocalcaches -ovolname=tmp_hal
+## To mount:
+1. igb
+sshfs weiyang4@biocluster.igb.uiuc.edu:/home/n-z/weiyang4/simons/Wei/ ./vm_igb  -ocache=no -onolocalcaches -ovolname=vm_igb
+
+2. hal
+sshfs weiyang4@hal9000-sched.cs.illinois.edu:/home/weiyang4/software/CS-GRN ./vm_hal  -ocache=no -onolocalcaches -ovolname=vm_hal

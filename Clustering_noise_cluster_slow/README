@@ -24,5 +24,5 @@ To test code on test data:
 
 Tips:
 	1) To get results sooner, try smaller -t
-	2) To get clusters with higher in/out denstiy ratio, try smaller couplingConstant
+	2) To get clusters with higher in/out denstiy ratio, try smaller -couplingConstant
 	3) To get smaller cost, try larger -t

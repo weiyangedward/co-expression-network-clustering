@@ -2,7 +2,7 @@
 #include "time.h"
 
 /*===== constructor ======*/
-Cluster::Cluster(SpeciesNetwork **specnws, int numS, Orthology *orthology, int numC, double cC)
+Cluster::Cluster(SpeciesNetwork **specnws, int numS, Orthology *orthology, int numC, double cC, bool has_noiseCluster)
 {
     SA_counter = 0;
     sns = specnws;
@@ -11,6 +11,7 @@ Cluster::Cluster(SpeciesNetwork **specnws, int numS, Orthology *orthology, int n
     numClusters = numC;
     couplingConstant = cC;
     maxtemp = MAXTEMP;
+    has_noise_cluster = has_noiseCluster;
     
     UndoLogSize = 0;
     snsNumNodes = new int[numSpecies];
@@ -33,9 +34,6 @@ Cluster::Cluster(SpeciesNetwork **specnws, int numS, Orthology *orthology, int n
         spe_cluster_nodes.push_back(tmp_cluster_node);
     }
     
-    // arr for total number of edges for each species
-    totalNumEdges = new int[numSpecies];
-    
     // 2D arr for degree of each node in each species
     degree = new int *[numSpecies];
     
@@ -44,11 +42,9 @@ Cluster::Cluster(SpeciesNetwork **specnws, int numS, Orthology *orthology, int n
         degree[i] = new int[snsNumNodes[i]];
     }
     
-    // count total number of edges and degree (do not need this )
-//    TotalNumEdges();
     
-    srand((int)time(NULL)); // random seed for local time
-//         srand(1); // fix random seed
+//    srand((int)time(NULL)); // random seed for local time
+         srand(1); // fix random seed
     
     // 2D arr to store cluster label for each edge (i, j)
     snsClusterAssn = new int *[numSpecies];
@@ -63,8 +59,17 @@ Cluster::Cluster(SpeciesNetwork **specnws, int numS, Orthology *orthology, int n
         bestClusterAssn[spe] = new int[snsNumNodes[spe]];
         for (int node=0; node<snsNumNodes[spe]; node++)
         {
-            snsClusterAssn[spe][node] = rand() % numClusters; // [spe][node] = cluster
-            spe_cluster_nodes[spe][snsClusterAssn[spe][node]][node] = 1; // [spe][cluster].push_back(node)
+            int rand_index = 0;
+            if (has_noise_cluster)
+            {
+                rand_index = rand() % numClusters; // if noise cluster included
+            }
+            else
+            {
+               rand_index = (rand() % (numClusters-1))+1; // if not, then no cluster0
+            }
+            snsClusterAssn[spe][node] = rand_index; // [spe][node] = cluster
+            spe_cluster_nodes[spe][rand_index][node] = 1; // [spe][cluster].push_back(node)
         }
     }
     
@@ -79,13 +84,10 @@ void Cluster::Print()
 {
     for (int i=0; i<numSpecies; i++)
     {
-        //        for (hash_map<const char*, int, hash<const char*>, eqstr>::iterator iter = sns[i]->nodeName2Id.begin(); iter != sns[i]->nodeName2Id.end(); ++iter) {
         for (std::unordered_map<string, int>::iterator iter = sns[i]->nodeName2Id.begin(); iter != sns[i]->nodeName2Id.end(); ++iter)
         {
-            //            const char *name = (const char *)(iter->first);
             string name = iter->first;
             int id = sns[i]->nodeName2Id[name];
-            // printf("Species %d\tGene %s\tCluster %d\n",i,name,snsClusterAssn[i][id]);
             printf("Species %d\tGene %s\tCluster %d\n",i,name.c_str(),bestClusterAssn[i][id]);
         }
     }
@@ -145,37 +147,6 @@ void Cluster::Preset(char *filename)
     CurrentCost = CurrentCostClus + couplingConstant * OrthCost(snsClusterAssn);
 }
 
-/*============
- TotalNumEdges (need to consider nodes in noise cluster!!!!!!!!!!)
- count total number of edges for each species
- */
-void Cluster::TotalNumEdges()
-{
-    for (int spc = 0; spc < numSpecies; spc++)
-    {
-        // compute degree of each node
-        // int *degree = new int[snsNumNodes[spc]];
-        // initialize degree value
-        for (int i=0; i<snsNumNodes[spc]; i++) degree[spc][i] = 0;
-        
-        for (int i=0; i<snsNumNodes[spc]; i++)
-        {
-            for (int j=i+1; j<snsNumNodes[spc]; j++)
-            {
-                if (sns[spc]->IsEdge(i,j)) { // if there is an edge between i and j
-                    degree[spc][i]++;
-                    degree[spc][j]++;
-                }
-            }
-        }
-        totalNumEdges[spc] = 0;
-        for (int i=0; i<snsNumNodes[spc]; i++) {
-            totalNumEdges[spc] += degree[spc][i];
-        }
-        // total number of edges, degree of both nodes added one each time
-        totalNumEdges[spc] /= 2;
-    }
-}
 
 /*===============
  LearnGroundState
@@ -216,19 +187,25 @@ void Cluster::LearnGroundState()
             double deltaCostCluster = DeltaCostNew(snsClusterAssn);
 //            fprintf(stderr, "delta cost %g, old cost %g\n", deltaCostCluster, OldCost);
             double NewCostClus = OldCostClus + deltaCostCluster; // compute new clustering cost term
-            double NewCost = NewCostClus + couplingConstant * OrthCost(snsClusterAssn); // compute new cost = clustering term + orth term (has noise cluster node been addressed? Yes it has)
             
-            double deltaCost = NewCost - OldCost; // compute delta cost that includes orth term
-            if (SA_counter % 10000 == 0)
-                fprintf(stderr, "delta cost %g, old cost %g\n", deltaCost, OldCost);
-            if (new_state == 0 and deltaCost > 0) // if node is moved to 'noise cluster' and has a worse cost
+            double NewCost = 0.0;
+            // only compute OrthCost when needed
+            if (couplingConstant > 0)
             {
-                deltaCost -= 0.0; // make its cost better to 'help' a node to move into 'noise cluster', set to 0 by now
-//                NewCost -= 0.0; // change the newCost so that there won't be a worse cost being accepted
+                NewCost = NewCostClus + couplingConstant * OrthCost(snsClusterAssn);
+            }
+            else
+            {
+                NewCost = NewCostClus;
             }
             
-            // bad move
-            if (deltaCost >= 0)  // if newCost >= oldCost
+            double deltaCost = NewCost - OldCost; // compute delta cost that includes orth term
+//            if (SA_counter % 10000 == 0)
+//                fprintf(stderr, "delta cost %g, old cost %g\n", deltaCost, OldCost);
+
+            
+            // bad move, newCost >= oldCost
+            if (deltaCost >= 0)
             {
                 // reject bad move
                 if (double(rand())/RAND_MAX >= exp(-deltaCost/temp)) // if a random double (0~1) >= e^(-delta / t), see explaination below
@@ -238,7 +215,7 @@ void Cluster::LearnGroundState()
                      delta is more positive, thus exp(-delta/T) is closer to 0,
                      thus reject probability is larger
                      */
-                    if (SA_counter % 10000 == 0)
+                    if (SA_counter % 100000 == 0)
                         fprintf(stderr, "REJECTED MOVE\t%g to %g at t %g, prob %g\n", OldCost, NewCost, temp, 1-exp(-deltaCost/temp)); // prev log
                     
                     UndoPerturb(snsClusterAssn, new_state); // undo pertubation
@@ -249,19 +226,20 @@ void Cluster::LearnGroundState()
                     CurrentCost = NewCost;
                     CurrentCostClus = NewCostClus;
                     
-                    if (SA_counter % 10000 == 0)
+                    if (SA_counter % 100000 == 0)
                         fprintf(stderr, "BAD MOVE\t%g to %g at t %g, prob %g\n", OldCost, NewCost, temp, exp(-deltaCost/temp)); // prev log
                     
                     nochangeiter = 0; // reset counter for no change of cost
                     UndoLogSize = 0; // reset counter if accept move
                 }
             }
-            else // deltaCost < 0, accept good moves, if newCost < oldCost
+            // deltaCost < 0, accept good moves, if newCost < oldCost
+            else
             {
                 CurrentCost = NewCost;
                 CurrentCostClus = NewCostClus;
                 
-                if (SA_counter % 10000 == 0)
+                if (SA_counter % 100000 == 0)
                     fprintf(stderr, "GOOD MOVE\t%g to %g at t %g\n", OldCost, NewCost, temp); // prev log, print out good move
                 
                 if (deltaCost < 0) // any improvement less than this is not counted as an improvement
@@ -281,13 +259,21 @@ void Cluster::LearnGroundState()
                 }
                 
             }
-            if (SA_counter % 10000 == 0)
+            if (SA_counter % 100000 == 0)
+            {
+                for (int spe = 0; spe<numSpecies; spe++)
+                {
+                    fprintf(stderr, "spe %d, noise size %lu\n", spe, spe_cluster_nodes[spe][0].size());
+                }
                 fprintf(stderr, "C = %g\n", CurrentCost); // prev log, print out curr cost
+            }
         }
     }
 }
 
-/* compute the delta cost after perturb of a node in species
+/*========================================================
+ DeltaCost:
+ compute the delta cost after perturb of a node in species
  
  1) if either the prev or new cluster of this node is noise cluster (0)
  then, compute the old and new score (delete this node from old cluster 
@@ -368,8 +354,8 @@ double Cluster::ScoreOfSpe(int spe)
     }
     double noise_cost = (double)noise_cluster_size * (spe_score / snsNumNodes[spe]);
     spe_score +=noise_cost;
-    if (SA_counter % 10000 == 0)
-        fprintf(stderr, "spe %d, noise cluster size %d, spe_score %g\n", spe, noise_cluster_size, spe_score);
+//    if (SA_counter % 10000 == 0)
+//        fprintf(stderr, "spe %d, noise cluster size %d, spe_score %g\n", spe, noise_cluster_size, spe_score);
     return spe_score;
 }
 
@@ -474,7 +460,9 @@ double Cluster::Cost(int **ClusterAssn)
 }
 
 /*=======
- OrthCost (just for now set cc = 0)
+ OrthCost 
+ 1) add OrthCost to the total cost if cc > 0
+ 2)
  compute cost of orth term
  */
 double Cluster::OrthCost(int **ClusterAssn)
@@ -543,7 +531,7 @@ void Cluster::CopyOver(int **ClusterAssn, int **oldClusterAssn) {
     }
 }
 
-/*==========
+/*================================================================
  UndoPerturb
  1) recover perturbed node to its old cluster
  2) for spe_cluster_nodes, delete perturbed node from new cluster,
@@ -561,9 +549,12 @@ void Cluster::UndoPerturb(int **ClusterAssn, int new_state)
     UndoLogSize = 0;
 }
 
-/*======
+/*===========================
  Perturb
- randomly assign a cluster to a random node
+ 1) randomly select a species
+ 2) randomly select a node
+ 3) randomly select a new cluster
+ 4) assign this to the new cluster
  */
 int Cluster::Perturb(int **ClusterAssn, int numchanges = 1)
 {
@@ -572,18 +563,27 @@ int Cluster::Perturb(int **ClusterAssn, int numchanges = 1)
     {
         // choose a random species
         int spc = rand() % numSpecies;
-        // chose a random node
+        // choose a random node
         int node = rand() % (snsNumNodes[spc]); // node is a uniq_ID instead of gene_ID
         int oldstate = ClusterAssn[spc][node];
         
+        // choose a random cluster
         while (1)
         {
-            newstate = rand() % numClusters; // choose a randome new cluster
-            /*================*/
-//            newstate = (rand() % (numClusters-1))+1;
-            /*================*/
+            int rand_index = 0;
+            if (has_noise_cluster)
+            {
+                rand_index = rand() % numClusters; // if noise cluster included
+            }
+            else
+            {
+                rand_index = (rand() % (numClusters-1))+1; // no cluster0
+            }
+            
+            newstate = rand_index; // choose a randome new cluster
             if (newstate == oldstate) continue;
-            if (SA_counter % 10000 == 0)
+            
+            if (SA_counter % 100000 == 0)
                 fprintf(stderr,"Per\tspe%d\tnode%s\told%d\tnew%d\n",spc,sns[spc]->nodeId2Name[node].c_str(),oldstate,newstate); // prev log
             // assign node to new cluster
             ClusterAssn[spc][node] = newstate;

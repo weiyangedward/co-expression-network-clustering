@@ -14,7 +14,7 @@ int main (int argc, char * const argv[]) {
     
     if (argc < 7)
     {
-        printf("usage: %s <numclusters> <numtrials> <couplingConstant> <orthfile> <numSpc> <spc1nw> <spc2nw> ... -s <startclustering> -t <maxtemp>\n", argv[0]);
+        printf("usage: %s <numclusters> <numtrials> <couplingConstant> <orthfile> <numSpc> <spc1nw> <spc2nw> ... -s <startclustering> -t <maxtemp> -n <no arg, use if noise cluster needed>\n", argv[0]);
         exit(1);
     }
     
@@ -38,6 +38,7 @@ int main (int argc, char * const argv[]) {
     /*====== read parameters: startclusfn '-s' and maxtemp '-t' =======*/
     char startclusfn[1024]; startclusfn[0] = 0;
     double maxtemp = -1;
+    bool has_noise_cluster = false;
     while (argbase < argc)
     {
         // ground-truth clutering
@@ -54,6 +55,13 @@ int main (int argc, char * const argv[]) {
             maxtemp = atof(argv[argbase++]);
             continue;
         }
+        // has noise cluster
+        if (!strcmp(argv[argbase], "-n"))
+        {
+            argbase++;
+            has_noise_cluster = true;
+            continue;
+        }
     }
     /*======= clustering ==========*/
     // create ortholog obj using (ortholog file, network arr, number of spe)
@@ -64,7 +72,7 @@ int main (int argc, char * const argv[]) {
     for (int i=0; i<numTrials; i++)
     {
         // initialize clustering parameters
-        c[i] = new Cluster(sns, numSpc, orth, numclusters, couplingConstant);
+        c[i] = new Cluster(sns, numSpc, orth, numclusters, couplingConstant, has_noise_cluster);
         
         // if ground-truth used, use ground-truth clustering label as start point
         if (startclusfn[0]!=0)

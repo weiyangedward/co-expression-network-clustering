@@ -26,3 +26,6 @@ Tips:
 	1) To get results sooner, try smaller -t
 	2) To get clusters with higher in/out denstiy ratio, try smaller -couplingConstant
 	3) To get smaller cost, try larger -t
+	4) To include noise cluster in the clustering results, use -n. Cluster0 is the noise cluster
+
+	
