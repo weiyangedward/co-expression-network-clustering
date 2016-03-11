@@ -1,4 +1,4 @@
-This dir contains src code and test data for clustering with noise cluster. Please note that this is a fast implementation of clustering model using adjacent list representation of the network. Time complexity is O(N) where N is the #nodes in the network for each iteration. Number of iterations depends on the simulated annealing process.
+This dir contains src code and test data for clustering with noise cluster. Please note that this is a fast implementation of clustering model using adjacent list representation of the network. Time complexity is O(N) where N is the #nodes in the network for each iteration. Number of iterations depends on the simulated annealing process. This code is similar to 'InOutRatioModel_with_Noise_Cluster_fast', the only difference is this code replaces size of noise cluster with number of cross-cluster noise ortholog edges when compute the ortholog term. Note that this code gives better performance in synthetic data when comparing In/Out-density Ratio and NMI scores
 
 Model for clustering:
 	1) Cost function for one species:
@@ -12,7 +12,7 @@ Model for clustering:
 		noise_term: #genes in noise cluster
 		lamda: sum_over_i(in_cluster_density(i) / ( in_cluster_density(i) + out_cluster_density(i))) / N
 	2) There will be k+1 clusters in the output clustering, where cluster0 is noise cluster and k is the number of clusters specified in arguments
-	3) ortholog term: a ortholog term is finally added to the cost function. This term is #ortholog edges where both end nodes of it are in the same cluster. A noise term for ortholog term is also added. Noise term = alpha * #genes in noise cluster, where alpha = sum(#ortholog edges) / N
+	3) ortholog term: a ortholog term is finally added to the cost function. This term is #(ortholog edges where both end nodes of it are in the same cluster). A noise term for ortholog term is also added. Noise term = #(ortholog edges in noise cluster and is cross-cluster)
 
 To compile:
 >> cd src
