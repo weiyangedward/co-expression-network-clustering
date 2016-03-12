@@ -43,8 +43,8 @@ Cluster::Cluster(SpeciesNetwork **specnws, int numS, Orthology *orthology, int n
     }
     
     
-//    srand((int)time(NULL)); // random seed for local time
-         srand(1); // fix random seed
+   srand((int)time(NULL)); // random seed for local time
+         // srand(1); // fix random seed
     
     // 2D arr to store cluster label for each edge (i, j)
     snsClusterAssn = new int *[numSpecies];

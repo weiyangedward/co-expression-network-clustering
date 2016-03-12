@@ -1,4 +1,4 @@
-This dir contains src code and test data for clustering with noise cluster. Please note that this is a fast implementation of clustering model using adjacent list representation of the network. Time complexity is O(N) where N is the #nodes in the network for each iteration. Number of iterations depends on the simulated annealing process. This code is similar to 'InOutRatioModel_with_Noise_Cluster_fast', the only difference is this code replaces size of noise cluster with number of cross-cluster noise ortholog edges when compute the ortholog term. Note that this code gives better performance in synthetic data when comparing In/Out-density Ratio and NMI scores
+This dir contains src code and test data for clustering with noise cluster. Please note that this is a fast implementation of clustering model using adjacent list representation of the network. Time complexity is O(N) where N is the #nodes in the network for each iteration. Number of iterations depends on the simulated annealing process. This code is similar to 'InOutRatioModel_with_Noise_Cluster_fast', the only difference is this code replaces size of noise cluster with number of cross-cluster noise ortholog edges when compute the ortholog term. Note that this code gives better performance in synthetic data when comparing In/Out-density Ratio and NMI scores. 
 
 Model for clustering:
 	1) Cost function for one species:
@@ -23,9 +23,9 @@ To test code on test data:
 >> ./src/bin/clustering 10 1 1 test_data/orth.txt 3 test_data/network0.txt test_data/network1.txt test_data/network2.txt -t 1 2>log >out
 
 Tips:
-	1) To get results sooner, try smaller -t
-	2) To get clusters with higher in/out denstiy ratio, try smaller -couplingConstant
-	3) To get smaller cost, try larger -t
-	4) To include noise cluster in the clustering results, use -n. Cluster0 is the noise cluster
+	1) To get results sooner, try smaller '-t'
+	2) To get clusters with higher in/out denstiy ratio, try smaller 'couplingConstant'
+	3) To get smaller cost, try larger '-t'
+	4) To include noise cluster in the clustering results, use '-n'. Cluster0 is the noise cluster
 
 	

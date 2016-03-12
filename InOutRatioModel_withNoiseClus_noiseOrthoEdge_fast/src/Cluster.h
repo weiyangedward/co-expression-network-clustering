@@ -26,7 +26,7 @@ public:
     Orthology *orth;
     int numSpecies;
     int numClusters;
-    double couplingConstant = 0.0;
+    double couplingConstant;
     double maxtemp;
     
     int ** snsClusterAssn;	// assignment of each node in each species to a cluster

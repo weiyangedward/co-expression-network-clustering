@@ -2,7 +2,7 @@
 
 'InOutRatioModel_with_Noise_Cluster_fast': contains src code and test case for clustering. Note that this is a fast implementation of the same model in 'Clustering_noise_cluster_slow'. Codes are tested and consistent results are obtained between these two implementations.
 
-'InOutRatioModel_withNoiseClus_noiseOrthoEdge_fast': similar to 'InOutRatioModel_with_Noise_Cluster_fast', the only difference is this code replaces size of noise cluster with number of cross-cluster noise ortholog edges when compute the ortholog term. Note that this code gives better performance in synthetic data when comparing In/Out-density Ratio and NMI scores
+'InOutRatioModel_withNoiseClus_noiseOrthoEdge_fast': similar to 'InOutRatioModel_with_Noise_Cluster_fast', the only difference is this code replaces size of noise cluster with number of cross-cluster noise ortholog edges when compute the ortholog term. Note that this code gives better performance in synthetic data when comparing In/Out-density Ratio and NMI scores. To enable noise cluster, use '-n'.
 
 'evaluate_clustering': contains scripts to evaluate clustering results. 
 
