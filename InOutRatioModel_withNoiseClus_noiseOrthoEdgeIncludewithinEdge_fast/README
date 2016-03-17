@@ -12,7 +12,7 @@ Model for clustering:
 		noise_term: #genes in noise cluster
 		lamda: sum_over_i(in_cluster_density(i) / ( in_cluster_density(i) + out_cluster_density(i))) / N
 	2) There will be k+1 clusters in the output clustering, where cluster0 is noise cluster and k is the number of clusters specified in arguments
-	3) ortholog term: a ortholog term is finally added to the cost function. This term is #(ortholog edges where both end nodes of it are in the same cluster). A noise term for ortholog term is also added. Noise term = #(ortholog edges in noise cluster and is cross-cluster)
+	3) ortholog term: a ortholog term is finally added to the cost function. This term is #(ortholog edges where both end nodes of it are in the same cluster). A noise term for ortholog term is also added. Noise term = #(ortholog edges that have at least one end node inside the noise cluster)
 
 To compile:
 >> cd src
