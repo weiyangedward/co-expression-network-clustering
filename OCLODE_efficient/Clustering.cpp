@@ -863,7 +863,7 @@ int Clustering::Perturb(SpeciesNetwork **species_network, int numchanges = 1)
 
             if (SA_counter % 10000 == 0 or show_log)
 //                fprintf(stderr,"Perturb spe %d, node %d, old %d, new %d\n",spc,node,oldstate,newstate); // prev log
-                fprintf(stderr,"Perturb spe %d, node %s, old %d, new %d\n",spc,species_network[spc]->uniqId_to_geneName[node].c_str(),oldstate,newstate); // prev log
+                fprintf(stderr,"Perturb spe %d, node %d, old %d, new %d\n",spc,node,oldstate,newstate); // prev log
 
 
             // record the change for later undo

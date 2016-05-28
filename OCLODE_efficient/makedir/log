@@ -317,235 +317,235 @@ cluster: 10, size: 13, in_edge: 5, out_edge: 64, possible_in_edge: 78
 spe 2, noise cluster size 0, spe_score/#nodes 0.524757
 orth_cost -19.8333, coexpression cc = 0
 Called LearnGroundState
-Perturb spe 1, node 109, old 7, new 2
+Perturb spe 1, node 71, old 7, new 2
 BAD MOVE	-51.6667 to -50.75 at t 0.9, prob 0.36113
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -50.75
-Perturb spe 1, node 60, old 9, new 6
+Perturb spe 1, node 40, old 9, new 6
 BAD MOVE	-57.1667 to -57.1667 at t 0.729, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -57.1667
-Perturb spe 1, node , old 8, new 3
+Perturb spe 1, node 94, old 8, new 3
 BAD MOVE	-86.5 to -86.5 at t 0.59049, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -86.5
-Perturb spe 2, node 102, old 5, new 7
+Perturb spe 2, node 30, old 5, new 7
 BAD MOVE	-113.583 to -113.583 at t 0.531441, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -113.583
-Perturb spe 0, node 38, old 2, new 5
+Perturb spe 0, node 2, old 2, new 5
 BAD MOVE	-149.083 to -149.083 at t 0.430467, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -149.083
-Perturb spe 1, node 73, old 10, new 3
+Perturb spe 1, node 25, old 10, new 3
 REJECTED MOVE	-152.833 to -150.833 at t 0.348678, prob 0.996772
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -152.833
-Perturb spe 0, node , old 3, new 9
+Perturb spe 0, node 100, old 3, new 9
 BAD MOVE	-187.583 to -187.583 at t 0.313811, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -187.583
-Perturb spe 1, node , old 10, new 4
+Perturb spe 1, node 93, old 10, new 4
 BAD MOVE	-204.5 to -204.5 at t 0.254187, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -204.5
-Perturb spe 1, node 75, old 6, new 10
+Perturb spe 1, node 47, old 6, new 10
 REJECTED MOVE	-217.667 to -216.25 at t 0.205891, prob 0.998973
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -217.667
-Perturb spe 0, node 27, old 4, new 6
+Perturb spe 0, node 29, old 4, new 6
 BAD MOVE	-221.75 to -221.75 at t 0.166772, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -221.75
-Perturb spe 0, node 38, old 3, new 8
+Perturb spe 0, node 2, old 3, new 8
 REJECTED MOVE	-226.333 to -224.583 at t 0.150095, prob 0.999991
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -226.333
-Perturb spe 1, node 94, old 7, new 1
+Perturb spe 1, node 31, old 7, new 1
 REJECTED MOVE	-227.333 to -226.333 at t 0.121577, prob 0.999732
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -227.333
-Perturb spe 2, node 67, old 6, new 8
+Perturb spe 2, node 85, old 6, new 8
 REJECTED MOVE	-228.167 to -226.167 at t 0.0984771, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.167
-Perturb spe 2, node 2, old 1, new 8
+Perturb spe 2, node 29, old 1, new 8
 REJECTED MOVE	-228.083 to -226.083 at t 0.0886294, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.083
-Perturb spe 2, node 64, old 8, new 6
+Perturb spe 2, node 86, old 8, new 6
 BAD MOVE	-228.333 to -228.333 at t 0.0717898, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.333
-Perturb spe 2, node 39, old 8, new 4
+Perturb spe 2, node 26, old 8, new 4
 REJECTED MOVE	-228.333 to -226.333 at t 0.0581497, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.333
-Perturb spe 2, node 36, old 7, new 4
+Perturb spe 2, node 4, old 7, new 4
 REJECTED MOVE	-228.417 to -227.417 at t 0.0471013, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.417
-Perturb spe 0, node , old 3, new 5
+Perturb spe 0, node 98, old 3, new 5
 BAD MOVE	-228.417 to -228.417 at t 0.0423912, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.417
-Perturb spe 1, node 57, old 5, new 9
+Perturb spe 1, node 44, old 5, new 9
 REJECTED MOVE	-228.5 to -226.5 at t 0.0343368, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 1, node 58, old 6, new 1
+Perturb spe 1, node 10, old 6, new 1
 REJECTED MOVE	-228.5 to -227.833 at t 0.0278128, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 1, node 68, old 3, new 8
+Perturb spe 1, node 57, old 3, new 8
 REJECTED MOVE	-228.417 to -226.5 at t 0.0250316, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.417
-Perturb spe 0, node 48, old 2, new 7
+Perturb spe 0, node 83, old 2, new 7
 REJECTED MOVE	-228.417 to -226.417 at t 0.0202756, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.417
-Perturb spe 2, node 85, old 2, new 5
+Perturb spe 2, node 37, old 2, new 5
 REJECTED MOVE	-228.5 to -227.5 at t 0.0164232, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 2, node 15, old 9, new 5
+Perturb spe 2, node 55, old 9, new 5
 REJECTED MOVE	-228.5 to -227.5 at t 0.0133028, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 2, node 26, old 9, new 3
+Perturb spe 2, node 19, old 9, new 3
 REJECTED MOVE	-228.5 to -226.583 at t 0.0119725, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 1, node 58, old 6, new 9
+Perturb spe 1, node 10, old 6, new 9
 REJECTED MOVE	-228.5 to -227.833 at t 0.00969774, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 0, node 40, old 9, new 6
+Perturb spe 0, node 9, old 9, new 6
 REJECTED MOVE	-228.5 to -226.5 at t 0.00785517, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 1, node 28, old 3, new 5
+Perturb spe 1, node 81, old 3, new 5
 REJECTED MOVE	-228.5 to -226.5 at t 0.00706965, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 0, node 106, old 3, new 6
+Perturb spe 0, node 87, old 3, new 6
 REJECTED MOVE	-228.5 to -226.5 at t 0.00572642, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 0, node 38, old 3, new 4
+Perturb spe 0, node 2, old 3, new 4
 REJECTED MOVE	-228.5 to -226.75 at t 0.0046384, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 1, node 111, old 4, new 3
+Perturb spe 1, node 63, old 4, new 3
 REJECTED MOVE	-228.5 to -226.417 at t 0.0037571, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 2, node 25, old 8, new 4
+Perturb spe 2, node 34, old 8, new 4
 REJECTED MOVE	-228.5 to -226.5 at t 0.00338139, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 0, node 77, old 8, new 2
+Perturb spe 0, node 86, old 8, new 2
 REJECTED MOVE	-228.5 to -227.5 at t 0.00273893, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 0, node 27, old 3, new 1
+Perturb spe 0, node 29, old 3, new 1
 BAD MOVE	-228.5 to -228.5 at t 0.00221853, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 2, node 100, old 7, new 1
+Perturb spe 2, node 89, old 7, new 1
 REJECTED MOVE	-228.5 to -226.333 at t 0.00199668, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 1, node 77, old 8, new 10
+Perturb spe 1, node 78, old 8, new 10
 REJECTED MOVE	-228.5 to -227.5 at t 0.00161731, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 2, node 7, old 1, new 6
+Perturb spe 2, node 32, old 1, new 6
 REJECTED MOVE	-228.5 to -227.583 at t 0.00131002, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Perturb spe 1, node 75, old 6, new 10
+Perturb spe 1, node 47, old 6, new 10
 REJECTED MOVE	-228.5 to -227.083 at t 0.00106112, prob 1
 spe 0, noise size 0
 spe 1, noise size 0
 spe 2, noise size 0
 C = -228.5
-Total time: 1.308978 s
+Total time: 1.314163 s
 Clustering destructor
 SpeciesNetwork destructor
 SpeciesNetwork destructor

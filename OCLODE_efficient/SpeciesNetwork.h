@@ -28,7 +28,7 @@ public:
     char species_name[LINELEN];
     unordered_map< string, int > geneName_to_uniqId; // (gene_ID, uniq_ID)
     vector< vector<int> > node_adjList; // adj list of network (space = V + E)
-    unordered_map< int, string > uniqId_to_geneName; // (uniq_ID, gene_ID)
+//    unordered_map< int, string > uniqId_to_geneName; // (uniq_ID, gene_ID)
 //    double **network; // adj matrix of network for a species (space = V^2)
 
 /* methods */

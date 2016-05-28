@@ -12,7 +12,7 @@ SpeciesNetwork::~SpeciesNetwork()
 //        delete[] network[i];
 //    delete[] network;
     node_adjList.clear();
-    uniqId_to_geneName.clear();
+//    uniqId_to_geneName.clear();
     geneName_to_uniqId.clear();
 }
 
@@ -57,8 +57,10 @@ SpeciesNetwork::SpeciesNetwork(char* network_file)
     /*====== read the rest of network file ======*/
     while (fgets(line, LINELEN, F))
     {
-        char *id1 = new char[LINELEN]; // buff for gene1
-        char *id2 = new char[LINELEN]; // buff for gene2
+//        char *id1 = new char[LINELEN]; // buff for gene1
+//        char *id2 = new char[LINELEN]; // buff for gene2
+        char id1[LINELEN];
+        char id2[LINELEN];
         double edge_weight; // edge weight
         // edge_weight = 1
         sscanf(line, "%s\t%s\t%lf",id1, id2, &edge_weight);
@@ -116,7 +118,7 @@ void SpeciesNetwork::hash_gene_id(string &gene_ID, char *network_file)
     if (geneName_to_uniqId.find(gene_ID) == geneName_to_uniqId.end()) // if gene1 is not seen
     {
         fprintf(stderr,"Assigning id %d to node %s in species %s\n",unique_node, gene_ID.c_str(), network_file); // print out which gene is assigned what unique ID
-        uniqId_to_geneName[unique_node] = gene_ID; // create a new entry for (uniq_ID, gene_ID) in hashmap
+//        uniqId_to_geneName[unique_node] = gene_ID; // create a new entry for (uniq_ID, gene_ID) in hashmap
         geneName_to_uniqId[gene_ID] = unique_node; // create a new entry for (gene_ID, gene_ID) in hashmap
         unique_node++; // increase uniq_ID by 1
 
