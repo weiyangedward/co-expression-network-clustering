@@ -1,0 +1,11 @@
+To compile:
+>cd makedir
+>rm -rf *
+>cmake ..
+>make
+
+(If compile under Linux system, please change '-std=c++11' to '-std=c++0x' in 'CMakeLists.txt')
+
+To run:
+>cd makedir
+>sh run.sh

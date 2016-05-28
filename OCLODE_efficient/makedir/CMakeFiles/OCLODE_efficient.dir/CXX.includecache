@@ -1,0 +1,78 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/Clustering.cpp
+Clustering.h
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/Clustering.h
+time.h
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/time.h
+
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/Clustering.h
+unordered_set
+-
+unordered_map
+-
+map
+-
+sstream
+-
+SpeciesNetwork.h
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/SpeciesNetwork.h
+Orthology.h
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/Orthology.h
+
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/Orthology.cpp
+Orthology.h
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/Orthology.h
+
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/Orthology.h
+cstdio
+-
+ctype.h
+-
+unordered_map
+-
+string
+-
+utility
+-
+sstream
+-
+unordered_set
+-
+ext/hash_map
+-
+SpeciesNetwork.h
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/SpeciesNetwork.h
+
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/SpeciesNetwork.cpp
+SpeciesNetwork.h
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/SpeciesNetwork.h
+
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/SpeciesNetwork.h
+list
+-
+vector
+-
+unordered_map
+-
+string
+-
+cmath
+-
+stdlib.h
+-
+
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/main.cpp
+Clustering.h
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/Clustering.h
+SpeciesNetwork.h
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/SpeciesNetwork.h
+Orthology.h
+/Users/WeiYang/Documents/My Documents/Education/UIUC/Lab/sinha_lab/project/coexpression_network/code/OCLODE_efficient/Orthology.h
+
